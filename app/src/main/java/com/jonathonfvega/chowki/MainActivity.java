@@ -14,6 +14,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -30,13 +31,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         mAuth = FirebaseAuth.getInstance();
 
+
+
         Button buttonSignUp = (Button) findViewById(R.id.signIn);
         buttonSignUp.setOnClickListener(this);
+
+        checkForCurrentUser();
     }
 
     public void registerUser() {
         String userPhoneNumber = getPhoneNumber();
-        mAuth.createUserWithEmailAndPassword("123@domain.com", "password")
+
+        String email = userPhoneNumber + "domain.com";
+        String password = "password";
+        mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -69,5 +77,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String mPhoneManager = tMgr.getLine1Number();
         System.out.print(mPhoneManager);
         return mPhoneManager;
+    }
+
+    public void checkForCurrentUser() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            // User is signed in
+            System.out.print(user.getEmail());
+        } else {
+            // No user is signed in
+            System.out.print("No User");
+        }
     }
 }
