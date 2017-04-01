@@ -1,6 +1,7 @@
 package com.jonathonfvega.chowki;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -31,29 +32,34 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         mAuth = FirebaseAuth.getInstance();
 
-
+        checkForCurrentUser();
+        System.out.print("something");
 
         Button buttonSignUp = (Button) findViewById(R.id.signIn);
         buttonSignUp.setOnClickListener(this);
 
-        checkForCurrentUser();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+
     }
 
     public void registerUser() {
         String userPhoneNumber = getPhoneNumber();
 
-        String email = userPhoneNumber + "domain.com";
+        String email = userPhoneNumber + "@domain.com";
         String password = "password";
+
+        System.out.print(email);
+
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         Toast.makeText(MainActivity.this, "Success", Toast.LENGTH_LONG);
-
-                        FirebaseDatabase database = FirebaseDatabase.getInstance();
-                        DatabaseReference myRef = database.getReference("message");
-
-                        myRef.setValue("Hello, World!");
 
                         // If sign in fails, display a message to the user. If sign in succeeds
                         // the auth state listener will be notified and logic to handle the
@@ -72,21 +78,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         registerUser();
     }
 
-    public String getPhoneNumber() {
-        TelephonyManager tMgr = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-        String mPhoneManager = tMgr.getLine1Number();
-        System.out.print(mPhoneManager);
-        return mPhoneManager;
-    }
-
     public void checkForCurrentUser() {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
             // User is signed in
             System.out.print(user.getEmail());
+            if (user.getEmail().equals((getPhoneNumber() + "@domain.com")) ) {
+
+                // Go to next Activity since user is signed in already
+
+                Intent nextActivity = new Intent(MainActivity.this, Main2Activity.class);
+                MainActivity.this.startActivity(nextActivity);
+
+            } else {
+                mAuth.signOut();
+            }
         } else {
             // No user is signed in
             System.out.print("No User");
         }
     }
+
+    public String getPhoneNumber() {
+        TelephonyManager tMgr = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+        String mPhoneManager = tMgr.getLine1Number();
+        return mPhoneManager;
+    }
+
 }
