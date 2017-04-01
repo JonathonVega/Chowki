@@ -21,14 +21,72 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_main2" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
+
+    <include layout="@layout/content_main2"
+        android:id="@+id/include" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/darkGrey">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:paddingLeft="30dp"
+            android:paddingRight="50dp"
+            android:text="Total Alerts:"
+            android:id="@+id/textView1"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/textView1"
+            android:layout_marginTop="100dp"
+            android:paddingLeft="50dp"
+            android:text="3"
+            android:id="@+id/textView2"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView1"
+            android:paddingLeft="30dp"
+            android:paddingRight="56dp"
+            android:text="New Alerts:"
+            android:id="@+id/textView3"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/textView3"
+            android:layout_below="@id/textView2"
+            android:paddingLeft="50dp"
+            android:text="3"
+            android:id="@+id/textView4"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
+
+
+
+    </RelativeLayout>
+
+
+
+    <Button
+        android:text="Track New Image"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
+        android:layout_gravity="bottom|center"
+        android:id="@+id/button2"
+        android:elevation="24dp"
+        android:background="@color/wallet_bright_foreground_holo_dark"/>
+
+
+
 
 </android.support.design.widget.CoordinatorLayout>
