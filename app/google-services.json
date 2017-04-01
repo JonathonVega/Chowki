@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "957651805465",
+    "firebase_url": "https://chowki-5b1ec.firebaseio.com",
+    "project_id": "chowki-5b1ec",
+    "storage_bucket": "chowki-5b1ec.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:957651805465:android:abb2c8ac962df2f8",
+        "android_client_info": {
+          "package_name": "com.jonathonfvega.chowki"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "957651805465-9u1lhfb16h4007r19b3jdg3vb2a9fjp1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtqry5LgI3D7xpbZAJrJt9XPDXfQMalwk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
