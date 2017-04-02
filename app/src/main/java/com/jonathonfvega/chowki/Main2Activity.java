@@ -26,6 +26,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.io.IOException;
 
 import static android.media.ExifInterface.TAG_ARTIST;
+import static android.media.ExifInterface.TAG_IMAGE_UNIQUE_ID;
 
 public class Main2Activity extends AppCompatActivity {
 
@@ -66,6 +67,10 @@ public class Main2Activity extends AppCompatActivity {
                         //System.out.print(exif.getAttribute(ExifInterface.TAG_DATETIME));
                         Log.d("Lets see", exif.getAttribute(ExifInterface.TAG_IMAGE_UNIQUE_ID));
 
+                        exif.setAttribute(TAG_IMAGE_UNIQUE_ID, "uniqueID1");
+                        exif.saveAttributes();
+
+
 
 
                         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -80,6 +85,11 @@ public class Main2Activity extends AppCompatActivity {
                         Log.d("Something messed up", "Exif error");
                     }
 
+                    try {
+                        Log.d("", new ExifInterface(filepath).getAttribute(TAG_IMAGE_UNIQUE_ID));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                     cursor.close();
                     Bitmap bitmap = BitmapFactory.decodeFile(filepath);
                     Drawable drawable = new BitmapDrawable(bitmap);

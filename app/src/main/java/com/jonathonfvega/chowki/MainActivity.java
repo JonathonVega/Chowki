@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         } else {
             // No user is signed in
-            System.out.print("No User");
+            Log.d("IDK","No User");
         }
     }
 
