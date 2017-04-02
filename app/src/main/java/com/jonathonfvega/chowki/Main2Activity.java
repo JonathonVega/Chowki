@@ -65,16 +65,18 @@ public class Main2Activity extends AppCompatActivity {
                     try {
                         ExifInterface exif = new ExifInterface(filepath);
                         //System.out.print(exif.getAttribute(ExifInterface.TAG_DATETIME));
-                        Log.d("Lets see", exif.getAttribute(ExifInterface.TAG_IMAGE_UNIQUE_ID));
+                        Log.d("Lets see", exif.getAttribute(ExifInterface.TAG_DATETIME));
 
-                        exif.setAttribute(TAG_IMAGE_UNIQUE_ID, "uniqueID1");
+
+                        String tag = "uniqueID1";
+                        exif.setAttribute(TAG_IMAGE_UNIQUE_ID, tag);
                         exif.saveAttributes();
 
 
 
 
                         FirebaseDatabase database = FirebaseDatabase.getInstance();
-                        DatabaseReference myRef = database.getReference().child("ImageData").child("89234jf8a9sf4").child("UserUID");
+                        DatabaseReference myRef = database.getReference().child("ImageData").child(tag).child("UserUID");
 
                         myRef.setValue(getCurrentUserID());
 
@@ -85,11 +87,11 @@ public class Main2Activity extends AppCompatActivity {
                         Log.d("Something messed up", "Exif error");
                     }
 
-                    try {
+                    /*try {
                         Log.d("", new ExifInterface(filepath).getAttribute(TAG_IMAGE_UNIQUE_ID));
                     } catch (IOException e) {
                         e.printStackTrace();
-                    }
+                    }*/
                     cursor.close();
                     Bitmap bitmap = BitmapFactory.decodeFile(filepath);
                     Drawable drawable = new BitmapDrawable(bitmap);
@@ -111,7 +113,7 @@ public class Main2Activity extends AppCompatActivity {
 
         } else {
             // No user is signed in
-            System.out.print("No User");
+            Log.d("No user", "No User");
         }
 
         return null;

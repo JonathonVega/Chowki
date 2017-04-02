@@ -25,6 +25,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private FirebaseAuth mAuth;
 
+    private Boolean signedIn = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,20 +56,45 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         System.out.print(email);
 
+
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        Toast.makeText(MainActivity.this, "Success", Toast.LENGTH_LONG).show();
+                        if (task.isSuccessful()) {
+                            Toast.makeText(MainActivity.this, "Success", Toast.LENGTH_LONG).show();
 
-                        Intent nextActivity = new Intent(MainActivity.this, Main2Activity.class);
-                        MainActivity.this.startActivity(nextActivity);
+                            Intent nextActivity = new Intent(MainActivity.this, Main2Activity.class);
+                            MainActivity.this.startActivity(nextActivity);
+
+                        } else {
+                            Toast.makeText(MainActivity.this, "Failure", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+    }
+
+    public void signInUser() {
+
+        String userPhoneNumber = getPhoneNumber();
+
+        String email = userPhoneNumber + "@domain.com";
+        String password = "password";
+
+        mAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        Log.d(TAG, "signInWithEmail:onComplete:" + task.isSuccessful());
+                        signedIn = !signedIn;
 
                         // If sign in fails, display a message to the user. If sign in succeeds
                         // the auth state listener will be notified and logic to handle the
                         // signed in user can be handled in the listener.
                         if (!task.isSuccessful()) {
-                            Toast.makeText(MainActivity.this, "Failure", Toast.LENGTH_LONG).show();
+                            Log.w(TAG, "signInWithEmail:failed", task.getException());
+
+
                         }
 
                         // ...
@@ -77,14 +104,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
-        registerUser();
+        signInUser();
+        if (signedIn == false) {
+            registerUser();
+        }
+
     }
 
     public void checkForCurrentUser() {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
             // User is signed in
-            System.out.print(user.getEmail());
+            Log.d("There should be a user","hopefully");
             if (user.getEmail().equals((getPhoneNumber() + "@domain.com")) ) {
 
                 // Go to next Activity since user is signed in already
@@ -93,6 +124,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 MainActivity.this.startActivity(nextActivity);
 
             } else {
+                Log.d("IT signed us out", "dafuq");
                 mAuth.signOut();
             }
         } else {
@@ -104,6 +136,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public String getPhoneNumber() {
         TelephonyManager tMgr = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
         String mPhoneManager = tMgr.getLine1Number();
+        Log.d("Maybe it worked", mPhoneManager);
         return mPhoneManager;
     }
 
