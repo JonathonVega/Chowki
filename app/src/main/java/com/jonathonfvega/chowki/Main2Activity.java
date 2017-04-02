@@ -59,13 +59,12 @@ public class Main2Activity extends AppCompatActivity {
                     try {
                         ExifInterface exif = new ExifInterface(filepath);
                         //System.out.print(exif.getAttribute(ExifInterface.TAG_DATETIME));
-                        Log.d("Lets see", exif.getAttribute(ExifInterface.TAG_DATETIME));
+                        Log.d("Lets see", exif.getAttribute(ExifInterface.TAG_IMAGE_UNIQUE_ID));
                     } catch (IOException e) {
                         Log.d("Something messed up", "Exif error");
                     }
 
                     cursor.close();
-
                     Bitmap bitmap = BitmapFactory.decodeFile(filepath);
                     Drawable drawable = new BitmapDrawable(bitmap);
                 }
