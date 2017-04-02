@@ -58,13 +58,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        Toast.makeText(MainActivity.this, "Success", Toast.LENGTH_LONG);
+                        Toast.makeText(MainActivity.this, "Success", Toast.LENGTH_LONG).show();
+
 
                         // If sign in fails, display a message to the user. If sign in succeeds
                         // the auth state listener will be notified and logic to handle the
                         // signed in user can be handled in the listener.
                         if (!task.isSuccessful()) {
-                            Toast.makeText(MainActivity.this, "Failure", Toast.LENGTH_LONG);
+                            Toast.makeText(MainActivity.this, "Failure", Toast.LENGTH_LONG).show();
                         }
 
                         // ...
