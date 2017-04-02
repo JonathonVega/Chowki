@@ -33,7 +33,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mAuth = FirebaseAuth.getInstance();
 
         checkForCurrentUser();
-        System.out.print("something");
 
         Button buttonSignUp = (Button) findViewById(R.id.signIn);
         buttonSignUp.setOnClickListener(this);
