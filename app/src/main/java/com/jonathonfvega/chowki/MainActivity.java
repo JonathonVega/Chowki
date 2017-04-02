@@ -60,6 +60,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         Toast.makeText(MainActivity.this, "Success", Toast.LENGTH_LONG).show();
 
+                        Intent nextActivity = new Intent(MainActivity.this, Main2Activity.class);
+                        MainActivity.this.startActivity(nextActivity);
 
                         // If sign in fails, display a message to the user. If sign in succeeds
                         // the auth state listener will be notified and logic to handle the
