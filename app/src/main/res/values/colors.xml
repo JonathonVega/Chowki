@@ -5,4 +5,20 @@
     <color name="colorAccent">#FF4081</color>
 
     <color name="darkGrey">#393a3d</color>
+    <color name="white">#FFF</color>
+
+    <!--Color Palette Purple Night-->
+    <color name="lightestPurple">#A393BF</color>
+    <color name="lighterPurple">#9882AC</color>
+    <color name="Purple">#73648A</color>
+    <color name="darkPurple">#453750</color>
+    <color name="darkestPurple">#0C0910</color>
+
+    <!--Color Palette Debugging Blue-->
+    <color name="lightestBlue">#829CBC</color>
+    <color name="lightBlue">#6290C8</color>
+    <color name="Blue">#376996</color>
+    <color name="darkBlue">#1F487E</color>
+    <color name="darkestBlue">#1D3461</color>
+
 </resources>
