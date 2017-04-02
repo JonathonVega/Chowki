@@ -18,6 +18,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.io.IOException;
 
 import static android.media.ExifInterface.TAG_ARTIST;
@@ -60,6 +65,17 @@ public class Main2Activity extends AppCompatActivity {
                         ExifInterface exif = new ExifInterface(filepath);
                         //System.out.print(exif.getAttribute(ExifInterface.TAG_DATETIME));
                         Log.d("Lets see", exif.getAttribute(ExifInterface.TAG_IMAGE_UNIQUE_ID));
+
+
+
+                        FirebaseDatabase database = FirebaseDatabase.getInstance();
+                        DatabaseReference myRef = database.getReference().child("ImageData").child("89234jf8a9sf4").child("UserUID");
+
+                        myRef.setValue(getCurrentUserID());
+
+
+
+
                     } catch (IOException e) {
                         Log.d("Something messed up", "Exif error");
                     }
@@ -72,5 +88,23 @@ public class Main2Activity extends AppCompatActivity {
             default:
                 break;
         }
+
+
     }
+
+    private String getCurrentUserID() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            // User is signed in
+
+            return user.getUid();
+
+        } else {
+            // No user is signed in
+            System.out.print("No User");
+        }
+
+        return null;
+    }
+
 }
