@@ -26,68 +26,64 @@
     <include layout="@layout/content_main2"
         android:id="@+id/include" />
 
+
+
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/darkGrey">
+        android:background="@color/Blue">
+
 
         <TextView
+            android:text="chowki"
+            android:textSize="145dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
-            android:paddingLeft="30dp"
-            android:paddingRight="50dp"
-            android:text="Total Alerts:"
-            android:id="@+id/textView1"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+            android:id="@+id/textView6" />
 
         <TextView
+            android:text="(dev version 0.1)"
+            android:textColor="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/textView1"
-            android:layout_marginTop="100dp"
-            android:paddingLeft="50dp"
-            android:text="3"
-            android:id="@+id/textView2"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
+            android:layout_alignBottom="@+id/textView6"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="118dp"
+            android:layout_marginBottom="31dp"
+            android:id="@+id/textView7" />
 
-        <TextView
-            android:layout_width="wrap_content"
+
+
+
+        <Button
+            android:text="Run Background Service"
+            android:background="@color/darkestBlue"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/textView1"
-            android:paddingLeft="30dp"
-            android:paddingRight="56dp"
-            android:text="New Alerts:"
-            android:id="@+id/textView3"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
 
-        <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/button4"
+            style="@style/Widget.AppCompat.Button.Borderless" />
+
+        <Button
+            android:text="Tag Image"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/textView3"
-            android:layout_below="@id/textView2"
-            android:paddingLeft="50dp"
-            android:text="3"
-            android:id="@+id/textView4"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
-
+            android:id="@+id/button2"
+            android:elevation="10dp"
+            android:background="@color/darkBlue"
+            style="@style/Widget.AppCompat.Button"
+            android:textAppearance="@style/TextAppearance.AppCompat.Button"
+            android:layout_above="@+id/button4"
+            android:layout_alignParentStart="true" />
 
 
     </RelativeLayout>
-
-
-
-    <Button
-        android:text="Track New Image"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|center"
-        android:id="@+id/button2"
-        android:onClick="btnClick"
-        android:elevation="24dp"
-        android:background="@color/wallet_bright_foreground_holo_dark"/>
-
-
 
 
 </android.support.design.widget.CoordinatorLayout>
