@@ -69,14 +69,18 @@ public class Main2Activity extends AppCompatActivity {
 
 
                         String tag = "uniqueID1";
+                        String tag2 = new String(String.valueOf((int)(Math.random()*10)));
+                        Log.d("Did it work now", tag2);
+
                         exif.setAttribute(TAG_IMAGE_UNIQUE_ID, tag);
                         exif.saveAttributes();
 
 
 
 
+
                         FirebaseDatabase database = FirebaseDatabase.getInstance();
-                        DatabaseReference myRef = database.getReference().child("ImageData").child(tag).child("UserUID");
+                        DatabaseReference myRef = database.getReference().child("ImageData").child(tag2).child("UserUID");
 
                         myRef.setValue(getCurrentUserID());
 
